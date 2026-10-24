@@ -6,51 +6,64 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Todo App</title>
     <link rel='stylesheet' href='main.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="grid">
-    <div class="pt-[3em] box bg-yellow-200 flex flex-col justify-center items-center">
-        <h2 class="mb-8 font-semibold text-3xl underline mb-[10px]">TO-DOS</h2>
-        <div class="card bg-white p-[1em] flex flex-col w-2/5 gap-[1em] rounded-lg shadow-md">
-            <p class="text-xl font-semibold">Create your Todo list</p>
-            <form action="#" class="flex flex-col">
-                <div class="min-w-full flex h-[2.5em]">
-                    <input type="text" name="task" id="task"
-                        class="task-input border border-gray-300 flex-6 min-h-full p-[5px] rounded-l-lg focus:outline-[1.6px] focus:outline-gray-300">
-                    <button type="submit" disabled
-                        class="submit-btn flex-1 min-h-full disabled:bg-gray-100 disabled:text-gray-600 disabled:cursor-not-allowed rounded-r-lg ">
-                        Add
-                    </button>
-                </div>
+<body class="grid min-h-screen min-w-[100vw] max-w-[100vw]">
+    <div
+        class="pt-[3em] max-w-full min-w-[100%] min-h-screen text-white box bg-black flex flex-col justify-center items-center">
+        <div class="content w-3/5">
+            <header class="flex justify-between items-center border-b-2 mb-[2em] border-b-gray-700 pb-[1em]">
+                <h1 class="font-[Syne] text-6xl text-[#c9ccd1] font-bold">Tasks</h1>
+                <p class="header-right"><span class="number-completed">0</span> <span class="text-[#80838a]">of
+                    </span><span class="text-[#80838a] number-available"> 0
+                    </span><span class="text-[#80838a]"> done</span></p>
+            </header>
+
+            <form class="w-full flex gap-[1em] mb-[2em]">
+                <input type="text" name="task" id="task" placeholder="What needs doing?"
+                    class="task-input border border-[#c9ccd1] rounded-md p-[1em] flex-5 h-[3.5em] focus:border-[#c9ccd1] focus:outline-transparent placeholder:text-gray-500 placeholder:italic">
+                <button type="submit" disabled
+                    class="submit-btn disabled:text-white disabled:cursor-not-allowed disabled:bg-gray-400 flex-1 text-2md font-medium cursor-pointer rounded-md">Add
+                    Task</button>
             </form>
-            <ul class="hidden">
+
+            <div class="function-buttons border-b-1 border-b-gray-700 pb-[1em] text-[#c9ccd1]">
+                <button
+                    class="all-btn border border-gray-700 rounded-lg p-[3px] h-[2em] w-[5em] hover:bg-[#f2f3f5] cursor-pointer hover:text-black">
+                    All
+                </button>
+
+                <button
+                    class="active-btn border border-gray-700 rounded-lg p-[3px] h-[2em] w-[5em] hover:bg-[#f2f3f5] cursor-pointer hover:text-black">
+                    Active
+                </button>
+
+                <button
+                    class="completed-btn border border-gray-700 rounded-lg p-[3px] h-[2em] w-[5em] hover:bg-[#f2f3f5] cursor-pointer hover:text-black">
+                    Done
+                </button>
+
+                <button
+                    class="remove-btn border border-gray-700 rounded-lg p-[3px] h-[2em] w-[5em] hover:bg-[#f2f3f5] cursor-pointer hover:text-black">
+                    Delete all
+                </button>
+            </div>
+            <div class="info-card border-b-1 border-b-gray-700 p-[3px] flex justify-center items-center h-[4em]">
+                <p class="text-[#c9ccd1]">No tasks yet. Add your first one above.</p>
+            </div>
+
+            <ul>
+
             </ul>
-
-            <div
-                class="function-buttons hidden grid-cols-3 gap-[0.3em] pt-[1em] border-t-1 border-t-black-500 grid-rows-4">
-                <button
-                    class="all-btn h-[2em] rounded-md border row-start-1 row-end-2 cursor-pointer bg-blue-400 text-white">All</button>
-                <button disabled
-                    class="active-btn [2em] disabled:cursor-not-allowed disabled:text-gray-600 disabled:bg-gray-100 rounded-md row-start-1 row-end-2">Active</button>
-                <button disabled
-                    class="completed-btn h-[2em] disabled:cursor-not-allowed rounded-md row-start-1 disabled:text-gray-600 disabled:bg-gray-100 row-end-2">Completed</button>
-                <button
-                    class="remove-btn rounded-md h-[2em] border row-start-2 row-end-3  col-start-2 col-end-3 bg-red-400 text-white">Remove</button>
-            </div>
-            <div class="info-card bg-gray-200 p-[2em] text-center italic text-gray-700 rounded-lg">
-                <p>
-                    You currently have nothing on your todo list.
-                    Add a todo item to your list to get started ✅
-                </p>
-            </div>
         </div>
 
-        <div
-            class="attribution mt-auto text-center text-gray-700 py-[1em] min-w-full border border-gray-200 border-t-gray-500">
-            <p>Created by Generalissimo</p>
-            <p>© 2026 • Built with Tailwind</p>
-        </div>
+        <footer class="mt-auto">
+            <p class="text-[#c9ccd1]">Designed and built by Generalissimo</p>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>

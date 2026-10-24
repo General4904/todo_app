@@ -8,9 +8,12 @@ const removeBtn = document.querySelector(".remove-btn");
 const activeBtn = document.querySelector(".active-btn");
 const allBtn = document.querySelector(".all-btn");
 const completedBtn = document.querySelector(".completed-btn");
+const numberCompleted = document.querySelector(".number-completed");
+const taskAvailable = document.querySelector(".number-available");
 
 const toDoItems = [];
 const completedTasks = [];
+console.log(completedTasks.length);
 
 inputElement.addEventListener("input", function () {
   submitBtn.disabled = inputElement.value.trim() === "";
@@ -27,7 +30,14 @@ inputElement.addEventListener("input", function () {
       "disabled:text-gray-600",
       "disabled:cursor-not-allowed",
     );
-    submitBtn.classList.add("bg-blue-400", "text-white", "cursor-pointer");
+    submitBtn.classList.add(
+      "cursor-pointer",
+      "bg-linear-to-r",
+      "from-[#8d9096]",
+      "via-[#f2f3f5]",
+      "to-[#b3b6bc]",
+      "text-black",
+    );
   }
 });
 
@@ -46,6 +56,7 @@ form.addEventListener("submit", function (e) {
     "cursor-not-allowed",
   );
   toDoItems.push(inputElementValue);
+  taskAvailable.innerText = toDoItems.length;
   console.log(toDoItems);
 
   const listElement = document.createElement("li");
@@ -55,9 +66,10 @@ form.addEventListener("submit", function (e) {
     "px-[1em]",
     "justify-center",
     "items-center",
-    "bg-gray-50",
+    "border-b-1",
+    "border-b-gray-700",
+    "text-white",
     "h-[3em]",
-    "mb-[1em]",
     "not-completed",
   );
 
@@ -84,8 +96,6 @@ form.addEventListener("submit", function (e) {
   unorderedList.style.listStyleType = "none";
   unorderedList.appendChild(listElement);
   infoCard.classList.add("hidden");
-  functionButtons.classList.remove("hidden");
-  functionButtons.classList.add("grid");
 
   /********************************************* Mark task completed *************************************************** */
   checkBox.addEventListener("change", function (e) {
@@ -95,21 +105,16 @@ form.addEventListener("submit", function (e) {
     if (checkBox.checked) {
       newParagraph.classList.add("line-through");
       completedTasks.push(listElement);
+      console.log(completedTasks.length);
+      numberCompleted.textContent = completedTasks.length;
       completedBtn.disabled = false;
-      completedBtn.classList.add(
-        "bg-green-200",
-        "text-white",
-        "cursor-pointer",
-      );
+      completedBtn.classList.add("cursor-pointer");
     } else {
       newParagraph.classList.remove("line-through");
       const index = completedTasks.indexOf(listElement);
       completedTasks.splice(index, 1);
-      completedBtn.classList.remove(
-        "bg-green-200",
-        "text-white",
-        "cursor-pointer",
-      );
+      completedBtn.classList.remove("cursor-pointer");
+      numberCompleted.innerHTML = completedTasks.length;
       completedBtn.disabled = true;
     }
     // console.log(completedTasks);
@@ -117,41 +122,44 @@ form.addEventListener("submit", function (e) {
 
   /********************************************* Remove completed task *************************************************** */
   removeItem.addEventListener("click", function () {
+    if (listElement.classList.contains("completed")) {
+      const index = completedTasks.indexOf(inputElementValue);
+      completedTasks.splice(index, 1);
+      console.log(completedTasks);
+    }
     listElement.remove();
     const index = toDoItems.indexOf(inputElementValue);
     toDoItems.splice(index, 1);
+    numberCompleted.innerText = completedTasks.length;
+    taskAvailable.innerText = toDoItems.length;
     console.log(toDoItems);
 
     /********************************************* Active button style *************************************************** */
     if (toDoItems.length === 0) {
       activeBtn.disabled = true;
-      activeBtn.classList.remove("bg-yellow-400", "text-white");
       completedBtn.disabled = true;
-      completedBtn.classList.remove("bg-green-400", "text-white");
+      completedBtn.classList.remove("text-white");
       infoCard.classList.remove("hidden");
-      functionButtons.classList.add("hidden");
+      infoCard.classList.add("flex");
       listElement.remove();
       return;
     }
 
     if (completedTasks.length === 0) {
       completedBtn.disabled = true;
-      completedBtn.classList.remove("bg-green-400", "text-white");
+      completedBtn.classList.remove("text-white");
     }
   });
 
   if (toDoItems.length !== 0) {
     activeBtn.disabled = false;
-    activeBtn.classList.add("bg-yellow-200", "text-white", "cursor-pointer");
   }
 
   /********************************************* Show active tasks *************************************************** */
   activeBtn.addEventListener("click", function () {
-    activeBtn.classList.add("bg-yellow-400");
-    allBtn.classList.remove("bg-blue-400");
-    completedBtn.classList.add("bg-green-200");
-    allBtn.classList.add("bg-blue-200");
-    completedBtn.classList.remove("bg-green-400");
+    activeBtn.classList.add("bg-white", "text-black");
+    allBtn.classList.remove("bg-white", "text-black");
+    completedBtn.classList.remove("bg-white", "text-black");
 
     const completedTask = document.querySelectorAll("li.completed");
     const notCompletedTask = document.querySelectorAll("li.not-completed");
@@ -166,29 +174,27 @@ form.addEventListener("submit", function (e) {
 
   /********************************************* Show all button style *************************************************** */
   allBtn.addEventListener("click", function () {
-    if (toDoItems.length === 0 || completedTasks.length === 0) {
+    if (toDoItems.length === 0) {
       allBtn.disabled = true;
     }
-    allBtn.classList.add("bg-blue-400");
-    activeBtn.classList.remove("bg-yellow-400");
+    allBtn.classList.add("bg-white", "text-black");
+    activeBtn.classList.remove("bg-white", "text-black");
+    removeBtn.classList.remove("bg-white", "text-black");
+    completedBtn.classList.remove("bg-white", "text-black");
     listElement.classList.remove("hidden");
-    completedBtn.classList.remove("bg-green-400");
-    completedBtn.classList.add("bg-green-200");
   });
 
   /********************************************* Completed button style *************************************************** */
   if (completedTasks.length !== 0) {
     completedBtn.disabled = false;
-    completedBtn.classList.add("bg-green-200", "text-white", "cursor-pointer");
+    completedBtn.classList.add("text-white", "cursor-pointer");
   }
 
   /********************************************* Show completed tasks *************************************************** */
   completedBtn.addEventListener("click", function () {
-    completedBtn.classList.remove("bg-green-200");
-    completedBtn.classList.add("bg-green-400");
-    activeBtn.classList.remove("bg-yellow-400");
-    allBtn.classList.remove("bg-blue-400");
-    allBtn.classList.add("bg-blue-200");
+    completedBtn.classList.add("bg-white", "text-black");
+    activeBtn.classList.remove("bg-white", "text-black");
+    allBtn.classList.remove("bg-white", "text-black");
     const notCompletedTask = document.querySelectorAll("li.not-completed");
     const completedTask = document.querySelectorAll("li.completed");
     notCompletedTask.forEach((element) => {
@@ -204,8 +210,10 @@ form.addEventListener("submit", function (e) {
     completedTasks.length = 0;
     toDoItems.length = 0;
     listElement.remove();
-    functionButtons.classList.add("hidden");
     infoCard.classList.remove("hidden");
+    infoCard.classList.add("flex");
+    numberCompleted.innerText = completedTasks.length;
+    taskAvailable.innerText = toDoItems.length;
     return;
   });
 });
