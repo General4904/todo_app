@@ -62,6 +62,7 @@ form.addEventListener("submit", function (e) {
   const listElement = document.createElement("li");
   listElement.classList.add(
     "flex",
+    "gap-3",
     "shadow-sm",
     "px-[1em]",
     "justify-center",
@@ -78,20 +79,60 @@ form.addEventListener("submit", function (e) {
   newParagraph.textContent = inputElementValue;
 
   const newDiv = document.createElement("div");
-  newDiv.classList.add("flex-1", "justify-between", "flex", "items-center");
+  newDiv.classList.add("flex-1", "flex", "items-center", "justify-end");
 
   const checkBox = document.createElement("input");
   checkBox.type = "checkbox";
+  checkBox.classList.add(
+    "peer",
+    "size-5",
+    "appearance-none",
+    "rounded-full",
+    "border",
+    "border-[#c9ccd1]",
+    "bg-black",
+    "checked:bg-black",
+    "cursor-pointer",
+  );
   const checkBoxContainer = document.createElement("div");
+  checkBoxContainer.classList.add(
+    "relative",
+    "inline-flex",
+    "size-5",
+    "items-center",
+    "justify-center",
+  );
+  const checkMark = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  checkMark.setAttribute("viewBox", "0 0 16 16");
+  checkMark.setAttribute("aria-hidden", "true");
+  checkMark.classList.add(
+    "pointer-events-none",
+    "absolute",
+    "inset-0",
+    "m-auto",
+    "hidden",
+    "size-3",
+    "text-[#c9ccd1]",
+    "peer-checked:block",
+  );
+  const checkMarkPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  checkMarkPath.setAttribute("d", "m3 8 3 3 7-7");
+  checkMarkPath.setAttribute("fill", "none");
+  checkMarkPath.setAttribute("stroke", "currentColor");
+  checkMarkPath.setAttribute("stroke-width", "2");
+  checkMarkPath.setAttribute("stroke-linecap", "round");
+  checkMarkPath.setAttribute("stroke-linejoin", "round");
+  checkMark.appendChild(checkMarkPath);
   checkBoxContainer.appendChild(checkBox);
+  checkBoxContainer.appendChild(checkMark);
 
   const removeItem = document.createElement("div");
   removeItem.classList.add("text-red-400");
   removeItem.textContent = "X";
   removeItem.classList.add("cursor-pointer");
-  newDiv.append(checkBoxContainer, removeItem);
+  newDiv.append(removeItem);
 
-  listElement.append(newParagraph, newDiv);
+  listElement.append(checkBoxContainer, newParagraph, newDiv);
   unorderedList.classList.remove("hidden");
   unorderedList.style.listStyleType = "none";
   unorderedList.appendChild(listElement);

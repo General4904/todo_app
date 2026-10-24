@@ -15,7 +15,7 @@
 <body class="flex flex-col justify-center items-center min-h-screen min-w-[100vw] max-w-[100vw]">
     <div
         class="pt-[3em] max-w-full min-w-[100%] min-h-screen text-white box bg-black flex flex-col justify-center items-center">
-        <div class="content w-3/5">
+        <div class="content min-w-[100%] max-[1020px]:px-[1em] min-[1020px]:w-3/5">
             <header
                 class="flex flex-col min-[1020px]:flex-row justify-between items-center border-b-2 mb-[2em] border-b-gray-700 pb-[1em]">
                 <h1 class="font-[Syne] text-6xl text-[#c9ccd1] font-bold">Tasks</h1>
@@ -24,11 +24,11 @@
                     </span><span class="text-[#80838a]"> done</span></p>
             </header>
 
-            <form class="w-full flex justify-center items-center gap-[1em] mb-[2em]">
+            <form class="w-full flex justify-center items-center min-[1020px]:gap-[1em] gap-[5px] mb-[2em]">
                 <input type="text" name="task" id="task" placeholder="Add task"
-                    class="task-input border border-[#c9ccd1] rounded-md p-[1em] h-[3.5em] min-[200px]:w-1/2 min-[1020px]:flex-6 focus:border-[#c9ccd1] focus:outline-transparent placeholder:text-gray-500 placeholder:italic">
+                    class="task-input border border-[#c9ccd1] rounded-md p-[1em] h-[3.5em] min-[200px]:min-w-[70%] min-[1020px]:flex-6 focus:border-[#c9ccd1] focus:outline-transparent placeholder:text-gray-500 placeholder:italic">
                 <button type="submit" disabled
-                    class="submit-btn disabled:text-white disabled:cursor-not-allowed h-[3.5em] min-[200px]:w-1/2 disabled:bg-gray-400 min-[1020px]:flex-1 text-2md font-medium cursor-pointer rounded-md">Add
+                    class="submit-btn disabled:text-white disabled:cursor-not-allowed h-[3.5em] min-[200px]:min-w-[30%] disabled:bg-gray-400 min-[1020px]:flex-1 text-2md font-medium cursor-pointer rounded-md">Add
                     Task</button>
             </form>
 
@@ -47,11 +47,6 @@
                     class="completed-btn border border-gray-700 rounded-lg p-[3px] h-[2em] w-[5em] hover:bg-[#f2f3f5] cursor-pointer hover:text-black">
                     Done
                 </button>
-
-                <button
-                    class="remove-btn bg-red-600 text-white rounded-lg p-[3px] h-[2em] w-[5em] hover:bg-red-500 cursor-pointer hover:text-black">
-                    Delete all
-                </button>
             </div>
             <div class="info-card border-b-1 border-b-gray-700 p-[3px] flex justify-center items-center h-[4em]">
                 <p class="text-[#c9ccd1]">No tasks yet. Add your first one above.</p>
@@ -60,6 +55,11 @@
             <ul>
 
             </ul>
+
+            <button
+                class="remove-btn bg-red-600 text-white rounded-lg mt-[1em] p-[3px] h-[2em] w-[5em] hover:bg-red-500 cursor-pointer hover:text-black">
+                Delete all
+            </button>
         </div>
 
         <footer class="mt-auto">
