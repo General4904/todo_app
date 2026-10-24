@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Todo App</title>
+    <link rel='stylesheet' href='main.css'>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="grid">
+    <div class="pt-[3em] box bg-yellow-200 flex flex-col justify-center items-center">
+        <h2 class="mb-8 font-semibold text-3xl underline mb-[10px]">TO-DOS</h2>
+        <div class="card bg-white p-[1em] flex flex-col w-2/5 gap-[1em] rounded-lg shadow-md">
+            <p class="text-xl font-semibold">Create your Todo list</p>
+            <form action="#" class="flex flex-col">
+                <div class="min-w-full flex h-[2.5em]">
+                    <input type="text" name="task" id="task"
+                        class="task-input border border-gray-300 flex-6 min-h-full p-[5px] rounded-l-lg focus:outline-[1.6px] focus:outline-gray-300">
+                    <button type="submit" disabled
+                        class="submit-btn flex-1 min-h-full disabled:bg-gray-100 disabled:text-gray-600 disabled:cursor-not-allowed rounded-r-lg ">
+                        Add
+                    </button>
+                </div>
+            </form>
+            <ul class="hidden">
+            </ul>
+
+            <div
+                class="function-buttons hidden grid-cols-3 gap-[0.3em] pt-[1em] border-t-1 border-t-black-500 grid-rows-4">
+                <button
+                    class="all-btn h-[2em] rounded-md border row-start-1 row-end-2 cursor-pointer bg-blue-400 text-white">All</button>
+                <button disabled
+                    class="active-btn [2em] disabled:cursor-not-allowed disabled:text-gray-600 disabled:bg-gray-100 rounded-md row-start-1 row-end-2">Active</button>
+                <button disabled
+                    class="completed-btn h-[2em] disabled:cursor-not-allowed rounded-md row-start-1 disabled:text-gray-600 disabled:bg-gray-100 row-end-2">Completed</button>
+                <button
+                    class="remove-btn rounded-md h-[2em] border row-start-2 row-end-3  col-start-2 col-end-3 bg-red-400 text-white">Remove</button>
+            </div>
+            <div class="info-card bg-gray-200 p-[2em] text-center italic text-gray-700 rounded-lg">
+                <p>
+                    You currently have nothing on your todo list.
+                    Add a todo item to your list to get started ✅
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="attribution mt-auto text-center text-gray-700 py-[1em] min-w-full border border-gray-200 border-t-gray-500">
+            <p>Created by Generalissimo</p>
+            <p>© 2026 • Built with Tailwind</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
