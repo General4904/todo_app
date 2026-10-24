@@ -12,22 +12,23 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="grid min-h-screen min-w-[100vw] max-w-[100vw]">
+<body class="flex flex-col justify-center items-center min-h-screen min-w-[100vw] max-w-[100vw]">
     <div
         class="pt-[3em] max-w-full min-w-[100%] min-h-screen text-white box bg-black flex flex-col justify-center items-center">
         <div class="content w-3/5">
-            <header class="flex justify-between items-center border-b-2 mb-[2em] border-b-gray-700 pb-[1em]">
+            <header
+                class="flex flex-col min-[1020px]:flex-row justify-between items-center border-b-2 mb-[2em] border-b-gray-700 pb-[1em]">
                 <h1 class="font-[Syne] text-6xl text-[#c9ccd1] font-bold">Tasks</h1>
                 <p class="header-right"><span class="number-completed">0</span> <span class="text-[#80838a]">of
                     </span><span class="text-[#80838a] number-available"> 0
                     </span><span class="text-[#80838a]"> done</span></p>
             </header>
 
-            <form class="w-full flex gap-[1em] mb-[2em]">
-                <input type="text" name="task" id="task" placeholder="What needs doing?"
-                    class="task-input border border-[#c9ccd1] rounded-md p-[1em] flex-5 h-[3.5em] focus:border-[#c9ccd1] focus:outline-transparent placeholder:text-gray-500 placeholder:italic">
+            <form class="w-full flex justify-center items-center gap-[1em] mb-[2em]">
+                <input type="text" name="task" id="task" placeholder="Add task"
+                    class="task-input border border-[#c9ccd1] rounded-md p-[1em] h-[3.5em] min-[200px]:w-1/2 min-[1020px]:flex-6 focus:border-[#c9ccd1] focus:outline-transparent placeholder:text-gray-500 placeholder:italic">
                 <button type="submit" disabled
-                    class="submit-btn disabled:text-white disabled:cursor-not-allowed disabled:bg-gray-400 flex-1 text-2md font-medium cursor-pointer rounded-md">Add
+                    class="submit-btn disabled:text-white disabled:cursor-not-allowed h-[3.5em] min-[200px]:w-1/2 disabled:bg-gray-400 min-[1020px]:flex-1 text-2md font-medium cursor-pointer rounded-md">Add
                     Task</button>
             </form>
 
@@ -48,7 +49,7 @@
                 </button>
 
                 <button
-                    class="remove-btn border border-gray-700 rounded-lg p-[3px] h-[2em] w-[5em] hover:bg-[#f2f3f5] cursor-pointer hover:text-black">
+                    class="remove-btn bg-red-600 text-white rounded-lg p-[3px] h-[2em] w-[5em] hover:bg-red-500 cursor-pointer hover:text-black">
                     Delete all
                 </button>
             </div>
